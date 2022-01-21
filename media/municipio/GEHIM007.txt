@@ -1,0 +1,1073 @@
+ ******************************************************************
+      *                                                                *
+      *        GENERADOR DE HISAR - 007 MDAD. DE BAHIA BLANCA         *
+      *                                                                *
+      *  PROGRAMA    : GEHIM007                                        *
+      *  FECHA       : 15/05/1996                                      *
+      *  AUTOR       : MARIA LAURA                                     *
+      *  DESCRIPCION : GENERA LA HISCAR DE LA MDAD. DE BAHIA BLANCA    *
+      *                                                                *
+      *----------------------------------------------------------------*
+      ******************************************************************
+      *                                                                *
+      *        I D E N T I F I C A T I O N   D I V I S I O N           *
+      *                                                                *
+      ******************************************************************
+       IDENTIFICATION DIVISION.
+       PROGRAM-ID. GEHIM007.
+       AUTHOR. MARIA LAURA
+           DATE WRITTEN. 15/05/1996
+      ******************************************************************
+      *                                                                *
+      *                         R E M A R K S                          *
+      *                                                                *
+      ******************************************************************
+      *REMARKS.'PROGRAMA QUE GENERA LA HISCAR DE MDAD.BAHIA BLANCA'
+      *REMARKS.'Y LISTA LAS TABLAS DE EQUIVALENCIAS SI SE PIDE.'.
+      *REMARKS.'PRESUPUESTO 9901.'.
+      *REMARKS.'MODIFICO PARA ANTIG.1 %. MONICA.'.
+      *REMARKS.'MOV 8/02 GRE1 AGREGO 92.. DEL LUCERO DESDE 01/99.'.
+      *REMARKS.'MOV 8/02 GRE2 BAJO S252 DESDE 8/01.'.
+      *REMARKS.'MOV 8/02 GRE3 BAJO SUP Y ELIMINO $ 65 DEDES 5/02.'.
+      *REMARKS.'MOV 8/02 GEH BAJO S050 DEDES 6/02.'.
+      *REMARKS.'MOV 1102 RESTITUYEN LOS $ 65' DESDE 11/02'.
+      *REMARKS.'MOV 0804 PPTO 0404 SUBE S050 0405 65 ALBAS 0301 SUBE S311'.
+      *REMARKS.'MOV 0405 PPTO 0105 AUMENTAN COMUNES Y S050  COMP007'.
+      *REMARKS.'MOV 0805 PPTO 0705 AUMENTAN HTAL'.
+      *REMARKS.'MOV 0905 PPTO 0705 AUMENTAN MPAL'.
+      *REMARKS.'MOV 0905 PPTO 0805 AUMENTAN MPALY CMH'.
+      *REMARKS.'MOV 1005 PPTO 0905 AUMENTAN MPALY CMH GRE2'.
+      *REMARKS.'MOV 1005 PPTO 1005 AUMENTAN MPALY CMH'.
+      *REMARKS.'MOV 1105 PPTO 1105 AUMENTAN MPALY CMH'.
+      *REMARKS.'MOV 1205 PPTO 1105 AGREGO S484 QUE SE ESCAPO EN NOV'.
+      *REMARKS.'MOV 0406 PPTO 0106 AUMENTAN JERARQUIZADOS SUP'.
+      *REMARKS.'MOV 0606 PPTO 03-04-05/06 AUMENTOS VS'.
+      *REMARKS.'MOV AGO/2006 PPTO 01/2006 CREO S101 S105'.
+      *REMARKS.'MOV MAR/2007 PPTO 03/2007'.
+      *REMARKS.'MOV ABR/2007 PPTO 03/2007 MODIF.SF POR ANT=4% BAS DEL 400430'.
+      *REMARKS.'MOV MAYO/2007 PPTO 05/2007 2% ANT'
+      *REMARKS.'MOV MAYO/2007 PPTO 05/2007 2% ANT'
+      *REMARKS.'MOV NOV/2007PPTO 07/2007SUBEN ALGUNOSJ,NOJ,MEDICOSCREOS121'.
+      *REMARKS.'REA MAR/2008PPTO 10/2007GRE1 1,01649 A H-HABERY SUMAFIJ1'.
+      *REMARKS.'MOV MAR/2008PPTO 01/2008SUBEN  GEHI 1,0997 H-HABERY SUMAF1.000
+      *REMARKS.'MOV ABR08 PPTO ENE08 CAMBIAN AUM A 22% S/JUN07,ESCALA PARA ALG JER.
+      *REMARKS.'MOV JUN/08 PPTO ABRL/0812% EN PERFJER EN ESCALA S101 DESDE 3/2008.
+      *REMARKS.'MOV JUL/08 PPTO JUL/08 8% EN PERFJER CMH NOJ JER ESC.
+      *REMARKS.'MOV OCT/08 PPTO OCT/08 1,02 PERFJER CMH NOJ JER.
+      *REMARKS.'REA ABRI/09 PPTO ENE/09 SUBE 1,08 Y 9M 5% + GRE1
+      *REMARKS.'MOV ABRI/09 PPTO ABR/09 SUBE 1,01850
+      *REMARKS.'MOV REJ MAY09 PPTOS ENE-ABR09 A C T U A L I Z O A N T I G U E D A D
+      *REMARKS.'MOV REJ JUL09 PPTOS ABR-MAY-JUN09 A C T U A L I Z O A N T I G U E D A D
+      *REMARKS.'MOV OCT PPTO OCT/09  A C T A N T I (1,0699 EN PER. Y 77)
+      *REMARKS.'MOV FEB10 PPTO MAY-JUN-OCT09 CODIGOS 90.. AGREGO BONIF.
+      *REMARKS.'REA MAR10 PPTO ENERO09 SF UNICA VEZ=360 EXPTE 21557-134175-09 EN GMAE.
+      *REMARKS.'MOV REA JUL10 PPTOS ABR-JUL(5%)-10 SUBEN TODOS.VA A CONSULTA POR CAMBIO DE CLASES.
+      *REMARKS.'MOV OCT10 PPTO OCT10 SUBEN TODOS.
+      *REMARKS.'MOV NOV10 PPTO NOV10 SUBEN TODOS.
+      *REMARKS.'MOV DIC10 PPTO 2010-02 EXPTE 21557-156695-10 SF UNICA=450 NOJ EN GMAE.
+      *REMARKS.'MOV FEB11 AGR 9 PPTO JUL10, OCT10, MEDICOS Y CREAN ENFERMEROS EN CMH.
+      *REMARKS.'MOV MAY11 PPTO FEBRE/11 7,5 (DECIA GRE2 ARRIBA )
+      *REMARKS.'MOV JUN11 PPTO JUNIO/11 1,06
+      *REMARKS.'MOV JUL11 PPTO JUN11 ACTUALIZO ANTIGUEDAD CON 1,06.
+      *REMARKS.'MOV JUL11 PPTO ABR/10 EXP 21557-162395-10  DTO350/10 SUMAFIJ UNICAVEZ 225 P/MDAD Y HTAL NO ES P/COD S GMAE
+      *REMARKS.'MOV OCT11 PPTO OCT11 11%.
+      *REMARKS.'MOV MAY12 PPTO ENE12 9% .
+      *REMARKS.'REA JUN/12 PPTO ENE/12 ANT 9% Q NO SE LE PAGO EN MAYO .
+      *REMARKS.'MOV JUN/12 PPTO JUN/12 7%.
+      *REMARKS.'MOV DIC12 ALTA CODIGOS DE INSPECTORES Y BONIFICAC POR MALVINAS: PPTOS JUL10-OCT10-FEB11-JUN11-OCT11-ENE12-JUN12.
+      *REMARKS.'MOV ENE13 PPTO DIC/12 9%
+      *REMARKS.'MOV FEB13 PPTO DIC/12 CREO S305
+      *REMARKS.'MOV MAY13 PPTO ABR13 9% .
+      *REMARKS.'MOV JUN13 PPTO ABR13 ANT Q NO SE HABIA PAGADO.
+      *REMARKS.'MOV AGO13 PPTO AGO13 6% VALOR ANT 176,98
+      *REMARKS.'MOV SET13 CMH:CREO COD DE BONIF Y CARGOS C/BONIF POR GDIAS, BRC PPTO JUL13, OTROS PPTO AGO13. AGREGO 10B2-10B3 DDE ENE12.
+      *REMARKS.'MOV OCT13 CARGO COD DE NOJ CON GR B-C-D  DDE  FEB11.CREO COD DE MENSUALIZADOS GRUPO 19 DDE PPTO OCTUBRE11 IGUAL A HOY.
+      *REMARKS.'MOV OCT13 PPTO 2008-06 INSPECTORES HASTA 2010-04 GREA--. CREO COD DE TEMPORARIOS GRUPO 18 DDE PPTO FEB11.
+      *REMARKS.'MOV DIC13 PPTO DIC13 8,5% VALOR ANT 192,03
+      *REMARKS.'MOV MAR14 PPTO FEB14 SF=500.
+      *REMARKS.'MOV ABR/14 PPTO DESDE 2011-01 A 2012-01 "T"Y "M"
+      *REMARKS.'MOV MAY14 PPTO MAR14 12% VALOR ANT 215,07
+      *REMARKS.'MOV JUL14 PPTO JUL/14 7% VALOR ANT 230,12. EXPTE 21557-182328-11 SFS UNICA VEZ DTO 1652/10 PPTO ENE11, GMAE.
+      *REMARKS.'MOV SET14 PPTO FEB09 ANTIG S050 1% DE FEB/09 A AGO/11, 3% A PARTIR DE SET/11 POR EXPTE 2350-119457-02, REAJUSTE DESDE ENERO/12, NO, PIDIERON NO PAGAR RETRO. ACTUALIZO 100148 DDE PPTO JUN11.
+      *REMARKS.'MOV SET14 APLICO EQUIV DE CARGOS MEDICOS 9001 A 9006 EXPTE 21557-14459-05 DDE 22-8-13.
+      *REMARKS.'MOV SET14 T Y M PPTO MAR/14 Y JUL/14.
+      *REMARKS.'MOV DIC14 PPTO DIC14 8,5% VALOR ANT 249,67
+      *REMARKS.'MOV FEB15 PPTO DIC14 CREO S501, S302, S052, S502 Y S303.
+      *REMARKS.'MOV MAR/15 PPTO  ENE/15 SUMA POR UNICA VEZ GRA1 SOLO NOJ LUCERO
+      *REMARKS.'MOV ABRI/15 PPTO ENE/15 3% ANT
+      *REMARKS.'MOV MAY/15 PPTO  FEB/15 SUMA POR UNICA VEZ GRA1 SOLO NOJ LUCERO
+      *REMARKS.'MOV JUN/15 PPTO FEB/15  SUMA 800 POR UNICA VEZ A INSPECTORES Y ENFERMERAS Q NO LE HABIA PAGADO GRA1
+      *REMARKS.'MOV JULI/15 PPTO ABR/15 1,11
+      *REMARKS.'MOV OCT/15  PPTO OCT/15 1,1760, CARGACMHVIE RES6/15
+      *REMARKS.'MOV NOV/15  CREO AGRUP ENFERMERAS 3E DESDE ABRIL 2015.
+      *REMARKS.'MOV ENE/16  PPTO ENE/16 5%, CARGACMHVIE RES6/15
+      *REMARKS.'MOV FEB16 PPTOS SET15 DIC15 ENE16 PARA S252,2003 Y 9.
+      *REMARKS.'MOV MAY16 PPTO ABR16 12% TODOS. CARGO EN TABLA TODOS LOS NOJ GRE1 DDE ENE16
+      *REMARKS.'MOV JUN16 CARGO S501-S302-S052-S502-S303 CON PPTO NOV14, DTO2332/14 LOS CREA DDE 15-11-14, ESTABAN DDE DIC14...
+      *REMARKS.'MOV AGO/16  PPTO AGO/16 9%, CARGACMHVIE RES6/15
+      *REMARKS.'MOV OCT/16  CARGO AGRUP ENFERMERAS DDE DIC14 A MAR15. ACTUALIZA AL S100 DDE PPTO JUN16.
+      *REMARKS.'MOV NOV/16 CREO HORARIO 18 Y 30 PARA MEDICOS.
+      *REMARKS.'MOV DIC/16 PPTO OCT/16 Y DIC/16. 6% Y 6.35% RESPECTIVAMENTE.
+      *REMARKS.'MOV DIC/16 CAMBIAN FORMA DE CALCULO DE GUARDIAS DESDE ABR16
+      *REMARKS.'MOV ENE/17 PPTO OCT/16 DIC/16 POR ANTIGUEDAD QUE NO SE ACTUALIZO.
+      *REMARKS.'MOV MAR17 PPTO ENE17 5%. J, T Y M EN TABLA
+      *REMARKS.'MOV ABR17 PPTO ENE17 GUARDIAS BRC1 A 4.
+      *REMARKS.'MOV JUN17 PPTO ABR17 1,29% NOJ. J, T EN TABLA
+      *REMARKS.'MOV AGO17 PPTO ABR17 5% Y JUL17 5% NOJ, J, T EN TABLA
+      *REMARKS.'MOV OCT17 PPTO OCT17 5% NOJ, J, T EN TABLA
+      *REMARKS.'MOV DIC17 PPTO OCT17 SOLO 9010  SIN PORCENTAJE !!!!!!!
+      *REMARKS.'MOV MAR18 PPTO ENE18 2,23% NOJ, J, T EN TABLA
+      *REMARKS.'MOV ABR18 PPTO OCT15 SE ACTUALIZAN SUELDOS QUE SE ADJUNTAN EN EXPTE 2350-129111-02. SE PIDE AL 3ERO POR PAGO DE RETRO
+      *REMARKS.'MOV MAY18 EXPTE DE EQUIV. DE ENFERMEROS 9F.. NO SE APLICA YA QUE NO HAY CODIFICADOS, EXPTE 21557-304884-14.
+      *REMARKS.'MOV MAY18 PPTO MAR18 5% NOJ, J Y T EN TABLA.
+      *REMARKS.'MOV JUL18 PPTO ENE18 5% NOJ, J Y T EN TABLA LO APLICADO EN MOV MAYO18 LO CAMBIAN DDE ENERO18
+      *REMARKS.'MOV JUL18 PPTO JUL18 10% NOJ, J Y T EN TABLA.
+      *REMARKS.'MOV AGO18 PPTO ABR18 CREO BONIFICACIONES PORCENTUALES DE CATEGORIAS.BF.. Y BH..
+      *REMARKS.'MOV NOV18 PPTO AGO18: ETIQUETADO DE SEGMENTOS, AUMENTO DEL 5% NOJ, J Y T EN TABLA'
+      *REMARKS.'MOV ENE19 PPTO OCT18: 5% NOJ, J Y T.
+      *REMARKS.'MOV FEB19 PPTO ENE16: PARA BONIFICACION BFJ2 POR PEDIDO DE STELLA ADECUACIONES MUNICIPAL
+      *REMARKS.'MOV MAR19 PPTO OCT18: APLICO 5% DE ANTIGUEDAD QUE FALTO EN EL ULTIMO AUMENTO
+      *REMARKS.'MOV ABR19 PPTO DIC/18  1,1065
+      *REMARKS.'MOV JUN19 PPTO ENE/19  1,016268 (1,8% EN PPTO)'.
+      *REMARKS.'MOV JUN19 PPTO MAR/19  1,00889267 (1% EN PPTO)'.
+      *REMARKS.'MOV JUL19 PPTO ENE/16 TIRO PARA ATRAS BFJ1,BFJ3,BFJ4,BFDC,BFDE,BH01,BH02,BH03
+      *REMARKS.'MOV AGO19 PPTO MAR19 - 9% TODOS.
+      *REMARKS.'MOV SET19 PPTO MAR19 - SE ACTUALIZA ANTI DE MARZO/19.
+      *REMARKS.'MOV NOV19 PPTO JUN19 - 8,42% J Y C
+      *REMARKS.'MOV NOV19 ARREGLO HISCAR PARA LOS T ANTIG AL 1% Y LE AGREGO LA SUMAFIJ3
+      *REMARKS.'MOV MAR20 PPTO DIC19 BONIF 5% CMH POR GMAE
+      *REMARKS.'MOV ABR20 PPTO ENE20 4%
+      *REMARKS.'MOV AGO20 PPTO ENE20 - BARRIDO DE PORCENTAJES Y ARREGLO HISCAR DESDE 01-19.DIFERENCIA +- 1 A 5%RETRO Y DEUDA.
+      *REMARKS.'MOV ENE20 PPTO OCT20/NOV20/DIC20.
+      *REMARKS.'MOV MAR21 PPTO FEB Y MARZO/21 VUELVO A APLICAR OCT20/NOV20/DIC20 PORQUE NO SE ACTUALIZ ANT.
+      *REMARKS.'MOV MAY21 PPTO MAY21 4% DE AUMENTO.
+      *REMARKS.'MOV JUl21 PPTO JUL21 4,5% DE AUMENTO.
+      *REMARKS.'MOV AGOSTO21 PPTO SEPTIEMBRE21 4,5% DE AUMENTO.
+      *REMARKS.'MOV OCTUBRE21 PPTO NOVIEMBRE21 5% DE AUMENTO.
+      
+      ******************************************************************
+      *                                                                *
+      *            E N V I R O N M E N T   D I V I S I O N             *
+      *                                                                *
+      ******************************************************************
+       ENVIRONMENT DIVISION.
+      *----------------------------------------------------------------*
+      *                     CONFIGURATION SECTION                      *
+      *----------------------------------------------------------------*
+       CONFIGURATION SECTION.
+       SPECIAL-NAMES. DECIMAL-POINT IS COMMA.
+      *----------------------------------------------------------------*
+      *                     INPUT-OUTPUT SECTION                       *
+      *----------------------------------------------------------------*
+       INPUT-OUTPUT SECTION.
+       FILE-CONTROL.
+           SELECT HISCAR ASSIGN "$HISCAR".
+      ******************************************************************
+      *                                                                *
+      *                   D A T A   D I V I S I O N                    *
+      *                                                                *
+      ******************************************************************
+       DATA DIVISION.
+       FILE SECTION.
+       FD  HISCAR
+           RECORD 302
+           LABEL RECORD STANDARD
+           DATA RECORD REG-HISCAR.
+       01  REG-HISCAR PIC X(302).
+      ******************************************************************
+      *                    WORKING-STORAGE SECTION                     *
+      ******************************************************************
+       WORKING-STORAGE SECTION.
+           COPY "WSFECHA.CPY".
+      *----------------------------------------------------------------*
+      *               VARIABLES Y CONSTANTES AUXILIARES                *
+      *----------------------------------------------------------------*
+       77  T-GRABA           PIC 9(8)       VALUE ZEROS.
+       77  I                 PIC 999        VALUE ZEROS.
+       77  H                 PIC 999        VALUE ZEROS.
+       77  X                 PIC 999        VALUE ZEROS.
+       77  K                 PIC 99         VALUE ZEROS.
+       77  K1                PIC 99         VALUE ZEROS.
+       77  K2                PIC 99         VALUE ZEROS.
+       77  KK                PIC 99         VALUE ZEROS.
+       77  L                 PIC 99         VALUE ZEROS.
+       77  LL                PIC 99         VALUE ZEROS.
+       77  J                 PIC 99         VALUE ZEROS.
+       77  M                 PIC 99         VALUE ZEROS.
+       77  MARB              PIC X          VALUE '0'.
+       77  POS-9M            PIC X          VALUE '0'.
+       77  ANTIG-AUX         PIC S9(8)V99   VALUE ZEROS.
+       77  ANT-CONG-CMH      PIC 99V99      VALUE 20,53.
+      ******************************************************************
+      *ANTIG = 4% BAS. CLASE MINIMA DE ADM ACTUALIZAR CDO HAY AUMENTO. *
+      ******************************************************************
+      *II
+      *II
+      *II
+      *\/
+       77  VAL-ANT           PIC 9(4)V99    VALUE 2165,36.
+      *77  VAL-ANT           PIC 9(4)V99    VALUE 2052,48.
+      *77  VAL-ANT           PIC 9(4)V99    VALUE 1954,75.
+      *77  VAL-ANT           PIC 9(4)V99    VALUE 1870,58.
+      *77  VAL-ANT           PIC 9(4)V99    VALUE 1790,03.
+      *77  VAL-ANT           PIC 9(4)V99    VALUE 1721,18.
+      *77  VAL-ANT           PIC 9(4)V99    VALUE 1012,79.
+      *77  VAL-ANT           PIC 999V99     VALUE 933,48.
+      *77  VAL-ANT           PIC 999V99     VALUE 848,85.
+      *77  VAL-ANT           PIC 999V99     VALUE 835,25.
+      *77  VAL-ANT           PIC 999V99     VALUE 754,86.
+      *----------------------------------------------------------------*
+      *77  VAL-LUC           PIC 999V99     VALUE 718,92.
+      *77  VAL-LUC           PIC 999V99     VALUE 754,86.
+      *77  VAL-LUC           PIC 999V99     VALUE 835,25.
+      *77  VAL-LUC           PIC 999V99     VALUE 848,85.
+      *77  VAL-LUC           PIC 999V99     VALUE 933,48.
+      *77  VAL-LUC           PIC 9(4)V99    VALUE 1721,18.
+      *77  VAL-LUC           PIC 9(4)V99    VALUE 1790,03.
+      *77  VAL-LUC          PIC 9(4)V99    VALUE 1954,75.
+      *77  VAL-LUC          PIC 9(4)V99    VALUE 2052,48.
+       77  VAL-LUC          PIC 9(4)V99    VALUE 2165,36.
+      *II
+      *II
+      *II
+      *****************************************************************************
+      *ANTIG = 4% BAS. CLASE MINIMA DE ADMINISTRATIVOS ACTUALIZAR CDO HAY AUMENTO.*
+      *****************************************************************************
+       77  MDAD              PIC X(4)       VALUE 'M007'.
+       77  IND               PIC 99.
+       77  DOS               PIC 9          VALUE ZERO.
+       77  K-LUC             PIC 999        VALUE 12.
+       77  K-CMH             PIC 999        VALUE 4.
+       77  K-J               PIC 999        VALUE 28.
+       77  II                PIC 9          VALUE ZERO.
+       77  POR-ANT           PIC 9999V99    VALUE ZEROS.
+       77  MARCA             PIC 9          VALUE ZERO.
+       77  HABER-AUX         PIC 9(6)V99    VALUE ZEROS.
+       77  AUX               PIC 9(6)V99    VALUE ZEROS.
+       77  SUMAS-AUX         PIC 9(6)V99    VALUE ZEROS.
+       77  CATEEQ            PIC X(4)       VALUE '0000'.
+       77  HORAEQ            PIC X(2)       VALUE '00'.
+      *----------------------------------------------------------------*
+      *                       FORMATO DE HISCAR                        *
+      *----------------------------------------------------------------*
+       01  REG-HIS.
+           02 H-FECHA                    PIC X(6).
+           02 H-CODIGO.
+              03 H-COD1.
+                 04 H-SECCI              PIC X.
+                 04 H-NRO                PIC XXX.
+              03 H-CATEG.
+                 04 H-AGRUP               PIC X.
+                 04 H-POS1                PIC X.
+                 04 H-POS2                PIC X.
+                 04 H-POS3                PIC X.
+              03 H-CATEG-R REDEFINES H-CATEG.
+                 04 H-AGRUP-R             PIC X.
+                 04 H-POS1-R              PIC X.
+                 04 H-POS2-3-R            PIC XX.
+              03 H-HORARIO                PIC XX.
+              03 F                        PIC XX  VALUE '00'.
+           02 H-RESTO                    PIC X(3) VALUE '000'.
+           02 H-HABER                    PIC 9(9)V99   COMP-3.
+      **                                              * POS 20 - 25
+           02 SUPL1                      PIC 9(9)V99   COMP-3.
+      **                                              * POS 26 - 31
+           02 SUPL2                      PIC 9(9)V99   COMP-3.
+      **                                              * POS 32 - 37
+           02 VEC-ANTIG.
+              03 H-ANTIG   OCCURS 41 TIMES PIC 9(9)V99 COMP-3.
+      **                                              * POS 38 - 283
+           02 SUMAFIJ1                   PIC S9(9)V99 COMP-3.
+      **                                              * POS 284- 289
+           02 SUMAFIJ2                   PIC S9(9)V99 COMP-3.
+      **                                              * POS 290- 295
+           02 SUMAFIJ3                   PIC S9(7)V99 COMP-3.
+      **                                              * POS 296- 300
+      *----------------------------------------------------------------*
+      *                     TABLA DE JERARQUIZADOS                     *
+      *----------------------------------------------------------------*
+      *CONTIENE TODOS LOS CARGOS JERARQUIZADOS CON CARGO Y SUELDO.
+       01  TABLA-JERARQUIZ.
+           02 FILLER PIC X(13) VALUE 'S252 93734128'.
+           02 FILLER PIC X(13) VALUE 'S305 28252408'.
+           02 FILLER PIC X(13) VALUE 'S450 28252408'.
+           02 FILLER PIC X(13) VALUE 'S484 22198269'.
+           02 FILLER PIC X(13) VALUE 'S050 29291915'.
+           02 FILLER PIC X(13) VALUE 'S007 22198269'.
+           02 FILLER PIC X(13) VALUE 'S311 22198269'.
+           02 FILLER PIC X(13) VALUE 'S470 28252408'.
+           02 FILLER PIC X(13) VALUE 'S100 22198269'.
+           02 FILLER PIC X(13) VALUE 'S121 18162156'.
+           02 FILLER PIC X(13) VALUE 'S147 12108152'.
+           02 FILLER PIC X(13) VALUE 'S103 14126181'.
+           02 FILLER PIC X(13) VALUE 'S101 09496539'.
+           02 FILLER PIC X(13) VALUE 'S105 08072068'.
+           02 FILLER PIC X(13) VALUE 'S051 30699352'.
+           02 FILLER PIC X(13) VALUE 'S501 14126171'.
+           02 FILLER PIC X(13) VALUE 'S302 14126171'.
+           02 FILLER PIC X(13) VALUE 'S052 23433532'.
+           02 FILLER PIC X(13) VALUE 'S502 17575149'.
+           02 FILLER PIC X(13) VALUE 'S303 17575149'.
+           02 FILLER PIC X(13) VALUE 'T001 22198269'.
+           02 FILLER PIC X(13) VALUE 'T002 18162756'.
+           02 FILLER PIC X(13) VALUE 'T003 14126171'.
+           02 FILLER PIC X(13) VALUE 'T004 12108152'.
+           02 FILLER PIC X(13) VALUE 'T005 04771154'.
+           02 FILLER PIC X(13) VALUE 'M103 02143200'.
+           02 FILLER PIC X(13) VALUE 'M300 01572000'.
+           02 FILLER PIC X(13) VALUE 'M200 00853160'.
+       01  TABLA-J REDEFINES TABLA-JERARQUIZ.
+           02 COD-A-GRAB OCCURS 28.
+               04 CARG-J     PIC X(4).
+               04 FILLER     PIC X.
+               04 SUELDOJ    PIC 9(6)V99.
+      *----------------------------------------------------------------*
+      *            TABLA DE SUELDOS - HOSPITAL Y MUNICIPAL             *
+      *----------------------------------------------------------------*
+      *SUELDOS DE HTAL Y MUNICIPAL UNIFICADOS EN 2005
+      *Y PARA CARGOS VIG DDE NOVIEMBRE 2009, TAB DE ENE2012.
+       01  MDAD-Y-LUCERO.
+           02 F PIC X(50) VALUE 'N001 10076004 11771884 12951329 1408437
+      -                  '8 15100576 '.
+           02 F PIC X(50) VALUE 'N002 09278735 10870250 11993288 1307207
+      -                  '3 14033970 '.
+           02 F PIC X(50) VALUE 'N003 09143518 10226967 11373016 1232618
+      -                  '8 13192990 '.
+           02 F PIC X(50) VALUE 'N004 08165772 09254049 10238604 1118213
+      -                  '5 12020612 '.
+           02 F PIC X(50) VALUE 'N005 07955701 08921465 09948394 1080610
+      -                  '9 11578501 '.
+           02 F PIC X(50) VALUE 'N006 09076907 10286667 11392699 1246093
+      -                  '9 13382590 '.
+           02 F PIC X(50) VALUE 'N007 08773200 09942474 11008004 1203467
+      -                  '7 12928594 '.
+           02 F PIC X(50) VALUE 'N008 08469484 09598263 10623299 1160840
+      -                  '4 12474594 '.
+           02 F PIC X(50) VALUE 'N009 08073015 09483537 10491833 1145991
+      -                  '3 12317301 '.
+           02 F PIC X(50) VALUE 'N010 07868816 08916592 09860646 1075585
+      -                  '9 11566618 '.
+           02 F PIC X(50) VALUE 'N011 07577600 08485700 09407161 1030385
+      -                  '0 11111298 '.
+           02 F PIC X(50) VALUE 'N012 07337875 08219018 09118730 0998545
+      -                  '6 10762945 '.
+           02 F PIC X(50) VALUE 'N013 07578594 08585889 09489443 1032958
+      -                  '8 11112635 '.
+           02 F PIC X(50) VALUE 'N014 07098141 07952312 08830306 0966706
+      -                  '4 10414577 '.
+           02 F PIC X(50) VALUE 'N015 07358432 08257408 09192136 0994918
+      -                  '8 10657149 '.
+           02 F PIC X(50) VALUE 'N016 06865904 07693102 08549372 0935616
+      -                  '9 10073714 '.
+           02 F PIC X(50) VALUE 'N017 07073761 07935266 08847528 0959147
+      -                  '7 10267585 '.
+           02 F PIC X(50) VALUE 'N018 07295127 08261924 09124989 0991830
+      -                  '8 10673622 '.
+           02 F PIC X(50) VALUE 'N019 06796570 07620614 08502915 0923377
+      -                  '3 09885524 '.
+           02 F PIC X(50) VALUE 'N020 06633670 07433897 08268443 0904525
+      -                  '8 09732847 '.
+           02 F PIC X(50) VALUE 'N021 07018413 07944715 08767280 0952199
+      -                  '6 10242116 '.
+           02 F PIC X(50) VALUE 'N022 06748451 07634254 08429817 0920060
+      -                  '2 09863035 '.
+           02 F PIC X(50) VALUE 'N023 06485234 07330542 08105862 0887921
+      -                  '7 09506427 '.
+           02 F PIC X(50) VALUE 'N024 06526870 07313464 08165793 0887607
+      -                  '5 09510941 '.
+           02 F PIC X(50) VALUE 'N025 06401424 07174678 07987510 0873436
+      -                  '5 09391988 '.
+           02 F PIC X(50) VALUE 'N026 06176679 06922965 07714053 0843095
+      -                  '7 09058604 '.
+           02 F PIC X(50) VALUE 'N027 06228760 07033735 07795397 0855782
+      -                  '7 09149833 '.
+           02 F PIC X(50) VALUE 'N028 05951929 06671246 07440626 0812754
+      -                  '4 08725229 '.
+           02 F PIC X(50) VALUE 'N029 05979035 06743357 07491688 0824393
+      -                  '4 08793243 '.
+           02 F PIC X(50) VALUE 'N030 05727196 06419536 07167177 0782412
+      -                  '9 08391854 '.
+           02 F PIC X(50) VALUE 'N031 05509929 06175308 06901220 0752821
+      -                  '8 08065968 '.
+           02 F PIC X(50) VALUE 'N032 05742829 06459896 07194729 0793753
+      -                  '1 08466608 '.
+           02 F PIC X(50) VALUE 'N033 05292672 05931080 06635277 0723230
+      -                  '2 07740097 '.
+           02 F PIC X(50) VALUE 'N034 05520101 06183180 06904510 0763862
+      -                  '0 08154965 '.
+           02 F PIC X(50) VALUE 'N035 05304138 05933464 06627794 0735468
+      -                  '2 07858298 '.
+           02 F PIC X(50) VALUE 'N036 05075419 05686866 06361841 0693639
+      -                  '0 07421701 '.
+           02 F PIC X(50) VALUE 'N037 05108396 05703992 06371332 0707824
+      -                  '8 07569122 '.
+           02 F PIC X(50) VALUE 'N038 04946422 05535255 06182359 0680181
+      -                  '4 07279944 '.
+           02 F PIC X(50) VALUE 'N039 04865660 05450131 06095886 0664795
+      -                  '8 07110802 '.
+           02 F PIC X(50) VALUE 'N040 04804688 05380030 06013621 0658530
+      -                  '4 07050701 '.
+           02 F PIC X(50) VALUE 'N041 04676459 05238299 05858383 0639127
+      -                  '4 06836441 '.
+           02 F PIC X(50) VALUE 'N042 04655898 05213389 05829938 0635953
+      -                  '5 06799899 '.
+           02 F PIC X(50) VALUE 'N043 04454366 04984147 05571476 0607860
+      -                  '2 06496490 '.
+           02 F PIC X(50) VALUE 'N044 04260722 04762056 05320569 0580497
+      -                  '0 06200055 '.
+           02 F PIC X(50) VALUE 'N045 04067093 04539954 05069642 0553133
+      -                  '1 05903636 '.
+           02 F PIC X(50) VALUE 'N046 03879035 04324311 04826118 0526560
+      -                  '9 05615837 '.
+           02 F PIC X(50) VALUE 'N047 03691038 04108732 04582603 0499999
+      -                  '2 05328065 '.
+           02 F PIC X(50) VALUE 'N048 05770227 06436947 07214362 0787687
+      -                  '7 08454621 '.
+           02 F PIC X(50) VALUE 'N049 05163415 05762709 06450225 0701180
+      -                  '8 07555634 '.
+           02 F PIC X(50) VALUE 'N050 06009957 06721621 07514036 0819904
+      -                  '0 08791747 '.
+           02 F PIC X(50) VALUE 'N051 05350701 05964981 06682464 0727559
+      -                  '4 07832827 '.
+           02 F PIC X(50) VALUE 'N052 04818793 05395627 06030699 0657349
+      -                  '5 07053702 '.
+           02 F PIC X(50) VALUE 'N053 06264667 07013799 07836164 0853514
+      -                  '8 09143842 '.
+           02 F PIC X(50) VALUE 'N054 05545472 06182238 06929672 0756581
+      -                  '1 08132487 '.
+           02 F PIC X(50) VALUE 'N055 04983610 05567924 06225481 0677623
+      -                  '0 07285943 '.
+           02 F PIC X(50) VALUE 'N056 05509929 06175308 06901220 0752821
+      -                  '8 08065968 '.
+       01  MDAD-LU REDEFINES MDAD-Y-LUCERO.
+           02 CTRO-SALUD OCCURS 56.
+               03 CAT-LUC   PIC X(4).
+               03 FILLER     PIC X.
+               03 EQUI-SDO OCCURS 5.
+                  05 SDO-L PIC 9(6)V99.
+                  05 FILLER     PIC X.
+      *----------------------------------------------------------------*
+      *          TABLA DE EQUIVALENCIAS HOSPITAL Y MUNICIPAL           *
+      *----------------------------------------------------------------*
+      *EQUIVALENCIA DE CARGOS DEL LUCERO  Y MPAL.
+       01 TABLA-EQUI.
+            02 F PIC X(70) VALUE 'N001 9101 1001 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N002 10B2 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N003 9102 1002 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N004 2001 3EA1 3ED2 9204 20D2 0000 '.
+            02 F PIC X(70) VALUE 'N005 9104 1003 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N006 20D1 3ED1 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N007 20C1 3EC1 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N008 20B1 3EB1 0000 0000 '.
+            02 F PIC X(70) VALUE 'N009 10B3 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N010 20C2 3EC2 0000 0000 '.
+            02 F PIC X(70) VALUE 'N011 50D1 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N012 50C1 0000 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N013 20B2 3EB2 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N014 50B1 0000 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N015 30D1 40D1 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N016 5001 50D2 60D1 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N017 30C1 40C1 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N018 2002 20D3 3EA2 3ED3 9206 0000 '.
+            02 F PIC X(70) VALUE 'N019 30B1 40B1 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N020 50C2 60C1 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N021 20C3 3EC3 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N022 20B3 3EB3 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N023 2003 20D4 3EA3 3ED4 0000 '.
+            02 F PIC X(70) VALUE 'N024 3001 30D2 4001 40D2 9307 9407 950
+      -           '7 0000 '.
+            02 F PIC X(70) VALUE 'N025 50B2 60B1 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N026 5002 50D3 6001 60D2 9208 9508 960
+      -           '8 0000 '.
+            02 F PIC X(70) VALUE 'N027 20C4 3EC4 0000 '.
+            02 F PIC X(70) VALUE 'N028 50C3 60C2 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N029 20B4 3EB4 0000 '.
+            02 F PIC X(70) VALUE 'N030 50B3 60B2 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N031 50D4 60D3 0000 '.
+            02 F PIC X(70) VALUE 'N032 9209 9309 9509 9609 9409 2004 20D
+      -           '5 3EA4 3ED5 0000'.
+            02 F PIC X(70) VALUE 'N033 50C4 60C3 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N034 20C5 3EC5 0000 '.
+            02 F PIC X(70) VALUE 'N035 20B5 3EB5 0000 '.
+            02 F PIC X(70) VALUE 'N036 50B4 60B3 0000 '.
+            02 F PIC X(70) VALUE 'N037 9210 9310 9410 2005 20D6 3EA5 3ED
+      -           '6 0000 0000 '.
+            02 F PIC X(70) VALUE 'N038 20C6 3EC6 0000 '.
+            02 F PIC X(70) VALUE 'N039 5004 50D5 6003 60D4 0000 '.
+            02 F PIC X(70) VALUE 'N040 20B6 3EB6 0000 '.
+            02 F PIC X(70) VALUE 'N041 2006 3004 4004 3EA6 9211 9311 941
+      -           '1 9511 9611 0000 0000 0000 0000 '.
+            02 F PIC X(70) VALUE 'N042 50C5 60C4 0000 '.
+            02 F PIC X(70) VALUE 'N043 50B5 60B4 0000 '.
+            02 F PIC X(70) VALUE 'N044 5005 50D6 6004 60D5 9512 9612 000
+      -           '0 '.
+            02 F PIC X(70) VALUE 'N045 50C6 60C5 0000 '.
+            02 F PIC X(70) VALUE 'N046 50B6 60B5 0000 '.
+            02 F PIC X(70) VALUE 'N047 5006 6005 9513 9613 0000'.
+            02 F PIC X(70) VALUE 'N048 3002 30D3 4002 40D3 0000'.
+            02 F PIC X(70) VALUE 'N049 3003 30D4 4003 40D4 0000'.
+            02 F PIC X(70) VALUE 'N050 40B2 30B2 0000 0000 0000'.
+            02 F PIC X(70) VALUE 'N051 40B3 30B3 0000 0000 0000'.
+            02 F PIC X(70) VALUE 'N052 40B4 30B4 0000 0000 0000'.
+            02 F PIC X(70) VALUE 'N053 40C2 30C2 0000 0000 0000'.
+            02 F PIC X(70) VALUE 'N054 40C3 30C3 0000 0000 0000'.
+            02 F PIC X(70) VALUE 'N055 40C4 30C4 0000 0000 0000'.
+            02 F PIC X(70) VALUE 'N056 5003 6002 0000 '.
+       01 T-EQUI REDEFINES TABLA-EQUI.
+          02 COD-A-GRA OCCURS 56.
+             03 CAT-L  PIC X(4).
+             03 FILLER PIC X(1).
+             03 EQUI-CARGO OCCURS 13.
+                05 CARG-L  PIC X(4).
+                05 FILLER  PIC X.
+      *----------------------------------------------------------------*
+      *           TABLA DE REGIMENES HORARIOS (MDAD-LUCERO).           *
+      *----------------------------------------------------------------*
+      *TABLA DE HORARIO CON QUE SE GENERAN LOS CARGOS MDAD Y LUCERO.
+       01 TABLA-HORAS.
+          02 FILLER PIC X(8) VALUE '30 09000'.
+          02 FILLER PIC X(8) VALUE '35 10500'.
+          02 FILLER PIC X(8) VALUE '40 12000'.
+          02 FILLER PIC X(8) VALUE '44 13200'.
+          02 FILLER PIC X(8) VALUE '48 14400'.
+       01 TABLA-R-HORAS REDEFINES TABLA-HORAS.
+          02 HOR-LUC OCCURS 5.
+             04 HORA-L   PIC 99.
+             04 FILLER   PIC X.
+             04 SUMA-L   PIC 9(3)V99.
+      *----------------------------------------------------------------*
+      *                     TABLA DE CARGOS MEDICOS                    *
+      *----------------------------------------------------------------*
+      *EN PERFORM GENERO CARGOS CON BONIF POR GDIAS.
+      *NO HAY PPCION. ES PARA MEDICOS DE MDAD Y LUCERO.
+      *DDE MOV SET14 AGR CODIG DE LA EQUIV EXPTE 21557-14459-05.
+       01  MEDICOS-JUL10.
+           02 F PIC X(69) VALUE
+           '9007 2217488 3100109 4337665 5166847 6445558 7117858 7809724
+      -    ' 8428503 '.
+           02 F PIC X(69) VALUE
+           '9008 2080170 2900888 3990620 4834786 5927862 6544320 7179850
+      -    ' 7745194 '.
+           02 F PIC X(69) VALUE
+           '9009 1992354 2756259 3678238 4593750 5457420 5963199 6540540
+      -    ' 7046405 '.
+           02 F PIC X(69) VALUE
+           '9010 1883136 2605164 3476592 4341919 5158241 5636294 6181985
+      -    ' 6660112 '.
+           02 F PIC X(69) VALUE
+           '9011 1776539 2457699 3279810 4096150 4866267 5317258 5832059
+      -    ' 6283129 '.                  
+      *----------------------------------------------------------------*         
+           02 F PIC X(69) VALUE
+           '9001 0000000 0000000 2055961 0000000 3055058 0000000 0000000
+      -    ' 0000000 '.
+           02 F PIC X(69) VALUE
+           '9002 0000000 0000000 0000000 0000000 0000000 2826429 0000000
+      -    ' 0000000'.
+           02 F PIC X(69) VALUE
+           '9003 0000000 0000000 1743406 0000000 2586701 0000000 0000000
+      -    ' 0000000 '.
+           02 F PIC X(69) VALUE
+           '9006 0000000 0000000 1554559 0000000 2306507 0000000 0000000
+      -    ' 0000000 '.
+       01  MED-NEW REDEFINES MEDICOS-JUL10.
+           02 MEDIC-GRAB OCCURS 9.
+               03 CAT-MED    PIC XXXX.
+               03 FILLER     PIC X.
+               03 SDMED-GRAB OCCURS 8.
+                  04 BAS-MED    PIC 9(5)V99.
+                  04 FILLER     PIC X.
+      *----------------------------------------------------------------*
+      *              CARGA HORARIA - CARRERA MEDICA                    *
+      *----------------------------------------------------------------*
+       01  HORAS-MEDENF.
+           02 F PIC X(9) VALUE '12 017500'.
+           02 F PIC X(9) VALUE '18 017500'.
+           02 F PIC X(9) VALUE '24 028500'.
+           02 F PIC X(9) VALUE '30 028500'.
+           02 F PIC X(9) VALUE '36 041500'.
+           02 F PIC X(9) VALUE '40 044100'.
+           02 F PIC X(9) VALUE '44 047950'.
+           02 F PIC X(9) VALUE '48 050500'.
+       01  HORAS-ME REDEFINES HORAS-MEDENF.
+           02 HORAS-GRAB OCCURS 8.
+               03 RH-MED    PIC 99.
+               03 FILLER    PIC X.
+               03 AD-LUC    PIC 9(4)V99.
+      *----------------------------------------------------------------*
+      *                      TABLA DE INSPECTORES                      *
+      *----------------------------------------------------------------*
+      *INSPECTORES: TAB CON COD SEG NVA DISPOSICION DE CLASES.
+      *TIENE SDO DE 30H.
+       01  INSPECTORES.
+           02 F PIC X(45) VALUE
+                        '801D 4984522 5599865 6256095 6744858 7289860 '.
+           02 F PIC X(45) VALUE
+                        '801C 4858824 5459440 6100943 6582339 7111564 '.
+           02 F PIC X(45) VALUE
+                        '801B 4733129 5319005 5945791 6419826 6933275 '.
+           02 F PIC X(45) VALUE
+                        '801A 4612688 5183846 5795896 6262568 6760235 '.
+           02 F PIC X(45) VALUE
+                        '802D 4612688 5183846 5795896 6262568 6760235 '.
+           02 F PIC X(45) VALUE
+                        '802C 4492247 5048677 5646006 6105315 6587200 '.
+           02 F PIC X(45) VALUE
+                        '802B 4371810 4913505 5496104 5948055 6414165 '.
+           02 F PIC X(45) VALUE
+                        '802A 4256618 4783603 5351477 5796054 6246390 '.
+           02 F PIC X(45) VALUE
+                        '803D 4256618 4783603 5351477 5796054 6246390 '.
+           02 F PIC X(45) VALUE
+                        '803C 4141444 4653691 5206839 5644061 6078620 '.
+           02 F PIC X(45) VALUE
+                        '803B 4026260 4523784 5062204 5492063 5910840 '.
+           02 F PIC X(45) VALUE
+                        '803A 3916331 4399133 4922824 5345321 5748320 '.
+           02 F PIC X(45) VALUE
+                        '804D 3916331 4399133 4922824 5345321 5748320 '.
+           02 F PIC X(45) VALUE
+                        '804C 3806412 4274486 4783448 5198585 5585798 '.
+           02 F PIC X(45) VALUE
+                        '804B 3696491 4149831 4644074 5051851 5423284 '.
+           02 F PIC X(45) VALUE
+                        '804A 3591826 4030447 4509963 4910363 5266023 '.
+           02 F PIC X(45) VALUE
+                        '805D 3591826 4030447 4509963 4910363 5266023 '.
+           02 F PIC X(45) VALUE
+                        '805C 3487164 3911061 4375847 4768885 5108771 '.
+           02 F PIC X(45) VALUE
+                        '805B 3382505 3791663 4241733 4627402 4951513 '.
+           02 F PIC X(45) VALUE
+                        '805A 3283100 3677539 4112868 4486984 4799514 '.
+           02 F PIC X(45) VALUE
+                        '806D 3283100 3677539 4112868 4486984 4799514 '.
+           02 F PIC X(45) VALUE
+                        '806C 3183854 3563880 3984495 4347029 4647590 '.
+           02 F PIC X(45) VALUE
+                        '806B 3183854 3563880 3984495 4347029 4647590 '.
+           02 F PIC X(45) VALUE
+                        '806A 2991233 3343194 3735297 4075370 4352739 '.
+       01  T-INSPECTOR REDEFINES INSPECTORES.
+           02 INSP-GRAB OCCURS 24.
+               03 COD-INS    PIC XXXX.
+               03 FILLER     PIC X.
+               03 BASICO-I  OCCURS 5.
+                  04 SDO-INS    PIC 9(5)V99.
+                  04 FILLER     PIC X.
+      *----------------------------------------------------------------*
+      *                  CARGA HORARIA - INSPECTORES                   *
+      *----------------------------------------------------------------*
+       01  HORAS-INSPECTORES.
+           02 F PIC X(2) VALUE '30'.
+           02 F PIC X(2) VALUE '35'.
+           02 F PIC X(2) VALUE '40'.
+           02 F PIC X(2) VALUE '44'.
+           02 F PIC X(2) VALUE '48'.
+       01  HORAS-INSP REDEFINES HORAS-INSPECTORES.
+           02 HS-INS OCCURS 5.
+               03 RHS-INS   PIC 99.
+      *----------------------------------------------------------------*
+      *               TABLA DE BONIF. POR RECURSO CRITICO              *
+      *----------------------------------------------------------------*
+      *BONIF POR RECURSO CRITICO PARA MED CON GDIAS.
+       01  BONIF-MED-GDIA.
+           02 F PIC X(11) VALUE 'BRC1 074106'.
+           02 F PIC X(11) VALUE 'BRC2 098809'.
+           02 F PIC X(11) VALUE 'BRC3 148213'.
+           02 F PIC X(11) VALUE 'BRC4 197617'.
+       01  BON-MED-GDIA REDEFINES BONIF-MED-GDIA.
+           02 BO-ME-GRAB OCCURS 4.
+               03 C-BRC      PIC XXXX.
+               03 FILLER     PIC X.
+               03 S-BRC      PIC 9(4)V99.
+               
+      *----------------------------------------------------------------*
+      *                      FECHA POR PARAMETRO                       *
+      *----------------------------------------------------------------*
+        01  PARAM.
+           02 FECHA      PIC X(6).
+      ******************************************************************
+      *                                                                *
+      *              P R O C E D U R E   D I V I S I O N               *
+      *                                                                *
+      ******************************************************************
+       PROCEDURE DIVISION.
+       MAINLINE.
+           PERFORM 1000-INICIO
+              THRU 1000-INICIO-EXIT.
+
+           PERFORM 3000-CARGA
+              THRU 3000-CARGA-EXIT.
+
+           PERFORM 5000-FIN
+              THRU 5000-FIN-EXIT.
+       MAINLINE-EXIT.
+           EXIT.
+      ******************************************************************
+      *-------------------------I N I C I O----------------------------*
+      ******************************************************************
+       1000-INICIO.
+           COPY PDFECHA.CPY.
+           OPEN EXTEND HISCAR.
+           ACCEPT PARAM.
+           MOVE FECHA TO H-FECHA.
+           MOVE MDAD  TO H-COD1.
+       1000-INICIO-EXIT.
+           EXIT.
+      ******************************************************************
+      *-------------------------P R O C E S O--------------------------*
+      ******************************************************************
+       3000-CARGA.
+      *----------------------------------------------------------------*
+           PERFORM 3100-CARGAJ
+              THRU 3100-CARGAJ-X
+           VARYING I FROM 1 BY 1 UNTIL I > K-J.
+      *----------------------------------------------------------------*
+           PERFORM 3200-CARGA-MUN-LUC
+              THRU 3200-CARGALUC-X
+           VARYING I FROM 1 BY 1 UNTIL I > 13
+             AFTER X FROM 1 BY 1 UNTIL X > 13.
+      *CARGO COD NUEVOS DDE I=13
+           PERFORM 3200-CARGA-MUN-LUC
+              THRU 3200-CARGALUC-X
+           VARYING I FROM 14 BY 1 UNTIL I > 56
+             AFTER X FROM 1  BY 1 UNTIL X > 13.
+      *----------------------------------------------------------------*
+           PERFORM 3300-CARGAMED
+              THRU 3300-CARGAMED-X
+           VARYING I FROM 1 BY 1 UNTIL I > 5
+             AFTER M FROM 1 BY 1 UNTIL M > 8.
+      *ABAJO SE GENERAN LOS COD VIEJOS EQUIPARADOS.
+           PERFORM 3300-CARGAMED
+              THRU 3300-CARGAMED-X
+           VARYING I FROM 6 BY 1 UNTIL I > 9
+             AFTER M FROM 3 BY 1 UNTIL M > 6.
+      *----------------------------------------------------------------*
+           PERFORM 3400-CARGAINSP
+              THRU 3400-CARGAINS-X
+           VARYING I FROM 1 BY 1 UNTIL I > 24
+             AFTER X FROM 1 BY 1 UNTIL X > 5.
+      *----------------------------------------------------------------*
+           PERFORM 3500-CARGABONBRC
+              THRU 3500-CARGABRC-X
+           VARYING I FROM 1 BY 1 UNTIL I > 4.
+       3000-CARGA-EXIT.
+           EXIT.
+      ******************************************************************
+      *-----------------------------F I N------------------------------*
+      ******************************************************************
+       5000-FIN.
+           DISPLAY ' CANTIDAD REGS. GRABADOS         : ' T-GRABA.
+           CLOSE HISCAR.
+       5000-FIN-EXIT.
+           STOP RUN.
+      ******************************************************************
+      *                     FINAL DEL PROGRAMA.                        *
+      ******************************************************************
+      ******************************************************************
+      *                                                                *
+      *          P A R R A F O S   D E   3 0 0 0 - C A R G A           *
+      *                                                                *
+      ******************************************************************
+      *----------------------------------------------------------------*
+      *                  CARGA - CARGOS JERARQUIZADOS                  *
+      *----------------------------------------------------------------*
+       3100-CARGAJ.
+           MOVE ZEROS TO H-HABER SUPL1 SUPL2 H-HORARIO
+                 SUMAFIJ1 SUMAFIJ3 SUMAFIJ2.
+           MOVE ALL ZEROS TO VEC-ANTIG.
+           MOVE CARG-J(I) TO H-CATEG.
+           MOVE SUELDOJ(I) TO H-HABER.
+           COMPUTE H-HABER = H-HABER * 1,045 * 1,05 * 1,055  .
+           IF H-CATEG = 'S050'
+               THEN
+               MOVE 3 TO POR-ANT
+               MOVE H-HABER TO SUMAFIJ3
+                  ELSE
+                  IF H-AGRUP = 'M'
+                  THEN
+                  MOVE ZEROS TO POR-ANT SUMAFIJ3
+                  ELSE
+                  IF H-AGRUP = 'T'
+                  THEN
+                  MOVE 1,00 TO POR-ANT
+                  MOVE H-HABER TO SUMAFIJ3
+                  ELSE
+                  MOVE VAL-ANT TO POR-ANT
+                  MOVE H-HABER TO SUMAFIJ3.
+           MOVE 0 TO J.
+           PERFORM 3925-CALCULA-ANTIG
+              THRU 3925-CALCULA-ANTIG-X
+           VARYING K FROM 1 BY 1 UNTIL K > 41.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+       3100-CARGAJ-X.
+           EXIT.
+      *----------------------------------------------------------------*
+      *                CARGA MUNICIPALES Y HOSP. LUCERO                *
+      *----------------------------------------------------------------*
+       3200-CARGA-MUN-LUC.
+         IF CARG-L (I, X) EQUAL '0000'
+                 THEN MOVE 13 TO X
+                      GO TO 3200-CARGALUC-X.
+         MOVE CARG-L (I, X) TO H-CATEG.
+           PERFORM 3250-CARGALUC1
+              THRU 3250-CARGALUC1-X
+           VARYING H FROM 1 BY 1 UNTIL H > 5.
+       3200-CARGALUC-X.
+           EXIT.
+      *----------------------------------------------------------------*
+      *           CARGA MUNICIPALES Y HOSP. LUCERO - PERFORM           *
+      *----------------------------------------------------------------*
+       3250-CARGALUC1.
+           MOVE ZEROS TO H-HABER SUPL1 SUPL2 H-HORARIO
+                 SUMAFIJ1 SUMAFIJ2 SUMAFIJ3.
+           MOVE ALL ZEROS TO VEC-ANTIG.
+           MOVE HORA-L (H) TO H-HORARIO.
+           MOVE SDO-L (I, H) TO H-HABER.
+           COMPUTE H-HABER = H-HABER * 1,045 * 1,05 * 1,055 .           
+       
+           COMPUTE SUMAFIJ3 = H-HABER + SUMAFIJ1.
+           MOVE 0 TO J.
+           MOVE VAL-LUC TO POR-ANT.
+           PERFORM 3950-ANT-LUCE
+              THRU 3950-ANT-LUCE-X
+           VARYING K FROM 1 BY 1 UNTIL K > 41.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+           IF H-CATEG = '5006' AND H-HORARIO = '40' AND MARB = '0'
+              THEN MOVE 'BSML' TO H-CATEG
+                   MOVE '00'   TO H-HORARIO
+                   COMPUTE H-HABER = H-HABER * 1,8
+                   MOVE ZEROS  TO POR-ANT  SUMAFIJ3
+                   MOVE 0 TO J
+                   PERFORM 3950-ANT-LUCE THRU 3950-ANT-LUCE-X
+                             VARYING K FROM 1 BY 1 UNTIL K > 41
+                   WRITE REG-HISCAR FROM REG-HIS
+                   ADD 1 TO T-GRABA
+    ******************** AGR BONIF POR MALVINAS:
+                   MOVE 'BCML' TO H-CATEG
+                   WRITE REG-HISCAR FROM REG-HIS
+                   ADD 1 TO T-GRABA
+                   MOVE '1' TO MARB
+                   MOVE '5006' TO H-CATEG
+                   MOVE 40 TO H-HORARIO.
+           IF H-HORARIO = '30' THEN
+              EVALUATE H-CATEG
+                 WHEN '1001'
+                   MOVE 'BFJ1' TO H-CATEG
+                   COMPUTE H-HABER = H-HABER * 0,25
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE '1001' TO H-CATEG
+                   MOVE 30 TO H-HORARIO
+                 WHEN '10B2'
+                   MOVE 'BFJ2' TO H-CATEG
+                   COMPUTE H-HABER = H-HABER * 0,25
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE '10B2' TO H-CATEG
+                   MOVE 30 TO H-HORARIO
+                 WHEN '3EA1'
+                   MOVE 'BH01' TO H-CATEG
+                   COMPUTE H-HABER = H-HABER * 0,20
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE '3EA1' TO H-CATEG
+                   MOVE 30 TO H-HORARIO
+                 WHEN '5001'
+                   MOVE 'BFDC' TO H-CATEG
+                   COMPUTE H-HABER = H-HABER * 0,15
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE '5001' TO H-CATEG
+                   MOVE 30 TO H-HORARIO
+                 WHEN '10B3'
+                   MOVE H-HABER TO AUX
+                   MOVE 'BFJ3' TO H-CATEG
+                   COMPUTE H-HABER = AUX * 0,25
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE 'BFJ4' TO H-CATEG
+                   COMPUTE H-HABER = AUX * 0,17
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE '10B3' TO H-CATEG
+                   MOVE 30 TO H-HORARIO
+                 WHEN '3EA2'
+                   MOVE H-HABER TO AUX
+                   MOVE 'BH02' TO H-CATEG
+                   COMPUTE H-HABER = AUX * 0,20
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE 'BH03' TO H-CATEG
+                   COMPUTE H-HABER = AUX * 0,05
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE '3EA2' TO H-CATEG
+                   MOVE 30 TO H-HORARIO
+              END-EVALUATE.
+           IF H-HORARIO = '44' AND H-CATEG = '5001' THEN
+                   MOVE 'BFDE' TO H-CATEG
+                   COMPUTE H-HABER = H-HABER * 0,20
+                   PERFORM 3900-GRABA THRU 3900-GRABA-X
+                   MOVE '5001' TO H-CATEG
+                   MOVE 44 TO H-HORARIO.
+       3250-CARGALUC1-X.
+           EXIT.
+      *----------------------------------------------------------------*
+      *                      CARGA CARRERA MEDICA                      *
+      *----------------------------------------------------------------*
+       3300-CARGAMED.
+      *CODIGOS 9M... Y 9007 A 9011
+           MOVE ZEROS TO H-HABER SUPL1 SUPL2
+                 SUMAFIJ1 SUMAFIJ2 SUMAFIJ3.
+           MOVE ALL ZEROS TO VEC-ANTIG.
+           IF BAS-MED (I, M) = 0 THEN GO TO 3300-CARGAMED-X.
+           MOVE CAT-MED(I) TO H-CATEG.
+           MOVE RH-MED (M) TO H-HORARIO.
+           MOVE BAS-MED(I, M) TO H-HABER.
+            COMPUTE H-HABER = H-HABER * 1,1 * 1,02 * 1,04.
+      *  AUMENTO 2021
+           COMPUTE H-HABER = H-HABER * 1,08 * 1,04 * 1,04 *1,045.
+           COMPUTE H-HABER = H-HABER * 1,045 * 1,05 * 1,055.
+
+      *----------------------------------------------------------------*
+      *CARGOS NO EXISTEN EN ESCALA, CONSERVO PORCENTAJES.    
+           IF H-CATEG-R = '9001' OR '9002' OR '9003' OR '9006'
+              THEN COMPUTE H-HABER = H-HABER * 1,1 * 1,05 * 1,05 
+              * 1,1065 * 1,016268 * 1,00889267 * 1,09 * 1,0842 
+              * 1,093 * 1,1415 * 1,04 
+              ELSE CONTINUE.
+      *----------------------------------------------------------------*
+      * DTO 2197/14 15% BASICO MEDICOS.
+           COMPUTE SUPL2 = H-HABER * 0,15.
+           MOVE H-HABER TO SUMAFIJ3.
+           MOVE 0 TO J.
+           MOVE VAL-ANT TO POR-ANT.
+           PERFORM 3950-ANT-LUCE 
+              THRU 3950-ANT-LUCE-X
+           VARYING K FROM 1 BY 1 UNTIL K > 41.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+           IF H-CATEG-R = '9001' OR '9002' OR '9003' OR '9006'
+              THEN GO TO 3300-CARGAMED-X.
+      *ARRIBA AGREGUE COD APROBADOS POR EQUIV SEG RES.394/13 EXPTE 21557-14459-05 DDE 22-8-13 MOV SET14.
+      *GENERO CARGOS CON BONIF POR GDIAS.
+           MOVE 'O' TO H-POS1 POS-9M.
+           COMPUTE SUMAFIJ2 = H-HABER * 0,8. 
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+           MOVE 'C' TO H-POS1 POS-9M.
+           COMPUTE SUMAFIJ2 = H-HABER.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+           MOVE 'N' TO H-POS1 POS-9M.
+           COMPUTE SUMAFIJ2 = H-HABER * 0,9.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+           COMPUTE SUMAFIJ2 = 0.
+           MOVE 'M' TO H-POS1 POS-9M.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+     ******** GENERO BONIFIC POR REEMPLAZO DE GDIAS.
+           IF H-CATEG = '9M11' AND H-HORARIO = '36'
+             THEN MOVE ZEROS TO SUPL1 SUPL2
+                  SUMAFIJ1 SUMAFIJ2 SUMAFIJ3
+                  MOVE ALL ZEROS TO VEC-ANTIG
+                  MOVE 'BRG1' TO H-CATEG
+                  MOVE '00' TO H-HORARIO
+                  COMPUTE H-HABER = H-HABER * 33 / 100
+                  MOVE 0 TO J POR-ANT
+                  PERFORM 3950-ANT-LUCE THRU 3950-ANT-LUCE-X
+                        VARYING K FROM 1 BY 1 UNTIL K > 41
+                  WRITE REG-HISCAR FROM REG-HIS
+                  ADD 1 TO T-GRABA
+                  COMPUTE H-HABER = H-HABER / 33 * 100
+                  MOVE 'BRG2' TO H-CATEG
+                  COMPUTE H-HABER = H-HABER * 37 / 100
+                  WRITE REG-HISCAR FROM REG-HIS
+                  ADD 1 TO T-GRABA.
+       3300-CARGAMED-X.
+           EXIT.
+      *----------------------------------------------------------------*
+      *                      CARGA - INSPECTORES                       *
+      *----------------------------------------------------------------*
+      * CODIGOS INSPECTORES - SE CREAN DDE PPTO JUL10.
+      * CODIGOS INSPECTORES - SE CREAN DDE PPTO JUL10.
+       3400-CARGAINSP.
+           MOVE ZEROS TO H-HABER SUPL1 SUPL2
+                 SUMAFIJ1 SUMAFIJ2 SUMAFIJ3.
+           MOVE ALL ZEROS TO VEC-ANTIG.
+           MOVE COD-INS(I) TO H-CATEG.
+           MOVE RHS-INS (X) TO H-HORARIO.
+           COMPUTE H-HABER = SDO-INS(I, X).
+           COMPUTE H-HABER = H-HABER * 1,1 * 1,02 * 1,04  .
+      *  AUMENTO 2021
+           COMPUTE H-HABER = H-HABER * 1,08 * 1,04 * 1,04 *1,045 .
+           COMPUTE H-HABER = H-HABER * 1,045 .   
+           COMPUTE H-HABER = H-HABER * 1,05 . 
+           COMPUTE H-HABER = H-HABER * 1,055 . 
+
+           MOVE H-HABER TO SUMAFIJ3.
+           MOVE 0 TO J.
+           MOVE VAL-LUC TO POR-ANT.
+           PERFORM 3950-ANT-LUCE THRU 3950-ANT-LUCE-X
+                             VARYING K FROM 1 BY 1 UNTIL K > 41.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+       3400-CARGAINS-X.
+           EXIT.
+      *----------------------------------------------------------------*
+      * CARGA BONIFICACIONES POR RECURSO CRITICO EN MEDICOS CON GDIAS. *
+      *----------------------------------------------------------------*
+       3500-CARGABONBRC.
+           MOVE ZEROS TO H-HABER SUPL1 SUPL2
+                 SUMAFIJ1 SUMAFIJ2 SUMAFIJ3.
+           MOVE ALL ZEROS TO VEC-ANTIG.
+           MOVE C-BRC (I) TO H-CATEG.
+           MOVE ZEROS     TO H-HORARIO.
+           MOVE S-BRC (I) TO H-HABER.
+      *  AUMENTO 2021
+           COMPUTE H-HABER = H-HABER * 1,08 * 1,04 * 1,04.           
+           MOVE 0 TO J POR-ANT.
+           PERFORM 3950-ANT-LUCE THRU 3950-ANT-LUCE-X
+               VARYING K FROM 1 BY 1 UNTIL K > 41.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+       3500-CARGABRC-X.
+           EXIT.
+      *----------------------------------------------------------------*
+      *      GRABA REGISTROS DE BONIFICACIONES FUNCION JERARQUICA      *
+      *----------------------------------------------------------------*
+       3900-GRABA.
+           MOVE '00'   TO H-HORARIO.
+           MOVE ZEROS  TO POR-ANT  SUMAFIJ3.
+           MOVE 0 TO J.
+           PERFORM 3950-ANT-LUCE THRU 3950-ANT-LUCE-X
+                 VARYING K FROM 1 BY 1 UNTIL K > 41.
+           WRITE REG-HISCAR FROM REG-HIS.
+           ADD 1 TO T-GRABA.
+       3900-GRABA-X.
+           EXIT.
+      *----------------------------------------------------------------*
+      *                      CALCULA ANTIGUEDAD.                       *
+      *----------------------------------------------------------------*
+       3925-CALCULA-ANTIG.
+           IF J = 0
+             THEN MOVE 0 TO ANTIG-AUX
+             ELSE
+                IF H-CATEG = 'S050' THEN
+                COMPUTE ANTIG-AUX = J * POR-ANT * SUMAFIJ3 / 100
+                ELSE
+                COMPUTE ANTIG-AUX =   POR-ANT *  J
+                IF H-AGRUP = 'T'
+                COMPUTE ANTIG-AUX = J * POR-ANT * SUMAFIJ3 / 100.
+           MOVE ANTIG-AUX  TO H-ANTIG (K).
+           ADD 1 TO J.
+       3925-CALCULA-ANTIG-X. EXIT.
+      *----------------------------------------------------------------*
+      *                  CALCULA ANTIGUEDAD - LUCERO                   *
+      *----------------------------------------------------------------*
+       3950-ANT-LUCE.
+           IF J = 0
+             THEN MOVE 0 TO ANTIG-AUX
+             ELSE COMPUTE ANTIG-AUX = POR-ANT *  J.
+           MOVE ANTIG-AUX  TO H-ANTIG (K).
+           ADD 1 TO J.
+       3950-ANT-LUCE-X.
+           EXIT.
+           
