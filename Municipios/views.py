@@ -8,9 +8,9 @@ def municipio(request):
 
     
     archivo = archivos.cant_municipios()
-
+    nuevo = None
     if request.method == "POST":
-        return HttpResponse('sadkasdkas')
+        nuevo = request.POST.get('opcion')
 
     # muni = Municipio(
     #     nombre = 'BAHIA BLANCA',
@@ -28,6 +28,7 @@ def municipio(request):
 
  #   archivos.editable(lineas)
     context = {
+        'nuevo':nuevo,
         'archivo':archivo,
     }
     return render(request, 'municipio.html', context )
@@ -36,14 +37,21 @@ def municipio(request):
 
 
 def parseCobol(request):
+    archivo= None
+    if request.method =="POST":
+        archivo = request.get('search', None)
+    
+    if not archivo:
+        return HttpResponse('ah ocurrido un error, nose encontro archivo')
+    else:
 
-    lineas = archivos.lecturaArchivo() 
+        lineas = archivos.lecturaArchivo(archivo) 
 
     context = {
 
         'lineas':lineas,
     }
 
-    return JsonResponse(context)
+    return JsonResponse(context, safe=True)
 
 

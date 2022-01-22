@@ -6,13 +6,15 @@ FILE_DIRS = settings.MEDIA_ROOT
 
 mun= '/municipio/'
 edit= '/municipio_edit/'
-def lecturaArchivo():
+def lecturaArchivo(archivo):
     lista= []  
-    file1 = open( FILE_DIRS + mun + 'GEHIM007.txt', 'r')
+
+    
+    file1 = open( FILE_DIRS + mun + f'{archivo}.txt', 'r')
     
     print('dividiendo hiscar en cachos')
     for file in file1:
-        linea = file
+        linea = file.strip()
         # filtrando los de 2021
         lista.append(linea)       
     
