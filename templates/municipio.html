@@ -14,10 +14,9 @@
 <body>
 
     <h1> autoCOBOL </h1>
-    <form method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
-
-
+        <input type="text" name="username" class="form-control" placeholder="Desired Username" />
         <label for="MUNICIPIO">ELIJE UN MUNICIPIO</label>
 
         <select name="search" id="municipio">
@@ -40,6 +39,7 @@
     <HR></HR>
 
     <div id="myPar">
+        <p data-editable>Second Element</p>
     </div>
 
 

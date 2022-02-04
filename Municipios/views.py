@@ -37,15 +37,9 @@ def municipio(request):
 
 
 def parseCobol(request):
-    archivo= None
-    if request.method =="POST":
-        archivo = request.get('search', None)
-    
-    if not archivo:
-        return HttpResponse('ah ocurrido un error, nose encontro archivo')
-    else:
 
-        lineas = archivos.lecturaArchivo(archivo) 
+    archivo = request.GET['archivo']
+    lineas = archivos.lecturaArchivo(archivo) 
 
     context = {
 
