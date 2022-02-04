@@ -59,7 +59,14 @@ $('body').on('click', '.editable', function() {
 window.addEventListener("scroll", function(event) {
 
     var top = this.scrollY;
-    var verticalScroll = document.querySelector(".verticalScroll");
     console.log(top);
+    if (top == '') {
+        document.getElementById('button_scroll').style.display = 'none';
+
+    } else {
+        document.getElementById('button_scroll').style.visibility = 'visible';
+        document.getElementById("button_scroll").style.marginTop = top + "px";
+
+    }
 
 }, false);

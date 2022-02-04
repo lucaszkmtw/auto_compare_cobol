@@ -11,32 +11,41 @@
     <title>Document</title>
 </head>
 
-<body>
+<body style="position:absolute;">
 
 
     <h1> autoCOBOL </h1>
-    <button type="button" class="btn btn-success" id="button_scroll">Guardar</button>
     <form action="" method="POST">
-        {% csrf_token %}
-        <label for="MUNICIPIO">ELIJE UN MUNICIPIO</label>
 
-        <select name="search" id="municipio" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
+        <div class="row">
+            <label for="MUNICIPIO">ELIJE UN MUNICIPIO</label>
+            <div class="col">
+
+
+                <select name="search" id="municipio" class="form-select form-select-lg mb-3" aria-label=".form-select-lg example">
         {% for arch in archivo %}
         <option  value={{arch}}>{{arch}}</option>
-      
-
         {% endfor %}
-
+    
 
         </select>
 
-        <button class="btn btn-danger" id="parsear" type="submit">
+            </div>
+            <div class="col">
+                <button class="btn btn-danger" id="parsear" type="submit">
+    
+                submit
+    
+            </button></div>
 
-            submit
 
-        </button>
+        </div> {% csrf_token %}
+
     </form>
 
+    <div style="position:absolute;">
+        <button type="button" class="btn btn-success" id="button_scroll">Guardar</button>
+    </div>
 
 
     <div id="myPar">
