@@ -53,3 +53,13 @@ $('body').on('click', '.editable', function() {
     $input.one('blur', save).focus();
 
 });
+
+
+
+window.addEventListener("scroll", function(event) {
+
+    var top = this.scrollY;
+    var verticalScroll = document.querySelector(".verticalScroll");
+    console.log(top);
+
+}, false);

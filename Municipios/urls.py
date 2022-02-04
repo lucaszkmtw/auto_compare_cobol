@@ -4,7 +4,7 @@ from Municipios.views import municipio, parseCobol
 
 
 urlpatterns = [
-    path('inicio/', municipio, name="municipio" ),
+    path('', municipio, name="municipio" ),
     path('parse_cobol/' , parseCobol, name="parseCobol" )
 
 
