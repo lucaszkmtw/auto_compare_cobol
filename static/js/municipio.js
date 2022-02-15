@@ -33,15 +33,20 @@ $('#parsear').click(function(e) {
 
 $('body').on('click', '.editable', function() {
 
-    var $el = $(this);
 
-    var $input = $('<input/>').val($el.text());
-    $el.replaceWith($input);
 
-    var save = function() {
-        var $p = $('<p data-editable />').text($input.val());
-        $input.replaceWith($p);
-    };
+
+
+
+    // // var $el = $(this);
+
+    // // var $input = $('<input/>').val($el.text());
+    // // $el.replaceWith($input);
+
+    // // var save = function() {
+    // //     var $p = $('<p data-editable />').text($input.val());
+    // //     $input.replaceWith($p);
+    // // };
 
     /**
       We're defining the callback with `one`, because we know that
@@ -50,7 +55,7 @@ $('body').on('click', '.editable', function() {
       Next time `p` turns into `input` this single callback 
       will be applied again.
     */
-    $input.one('blur', save).focus();
+
 
 });
 
@@ -59,14 +64,33 @@ $('body').on('click', '.editable', function() {
 window.addEventListener("scroll", function(event) {
 
     var top = this.scrollY;
-    console.log(top);
+
     if (top == '') {
         document.getElementById('button_scroll').style.display = 'none';
 
     } else {
+        document.getElementById('button_scroll').style.display = 'block';
         document.getElementById('button_scroll').style.visibility = 'visible';
         document.getElementById("button_scroll").style.marginTop = top + "px";
 
     }
 
 }, false);
+
+
+
+
+
+
+function abrir_modal_creacion(url) {
+    $('#creacion').load(url, function() {
+        $(this).modal('show');
+
+
+    });
+}
+
+
+function cerrar_modal_creacion() {
+    $('#creacion').modal('hide');
+}

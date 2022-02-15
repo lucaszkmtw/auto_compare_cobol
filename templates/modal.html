@@ -1,0 +1,51 @@
+<div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+            <h2 class="modal-title">Aumentos Cobol</h2>
+            <button class="close" type="button" data-dismiss="modal" aria-label="Close" onclick="cerrar_modal_creacion();">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <form method="POST">
+
+            <div class="modal-body">
+
+                <div class="form-inline">
+                    <div class="form-group mb-">
+                        <label for="select2">seleccione lineas a parsear</label>
+                        <select multiple class="form-control" id="select" style="width: 75%">
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+                    <option>1</option>
+
+
+                    </select>
+                    </div>
+                    <div class="form-group mb-1">
+                        <label for="seleccionado">seleccionados</label>
+                        <select multiple class="form-control" id="seleccionado" style="width: 75%">
+                            </select>
+
+
+                    </div>
+                </div>
+                <div class="form-group">
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-danger" type="button" onclick="cerrar_modal_creacion();">Cancelar</button>
+                    <button id="boton_creacion" class="btn btn-primary" type="button">Confirmar</button>
+                </div>
+        </form>
+        </div>
+    </div>
+
+
+    <script>
+        $(".js-example-theme-single").select2({
+            theme: "classic"
+        });
+    </script>

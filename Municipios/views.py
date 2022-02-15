@@ -49,3 +49,9 @@ def parseCobol(request):
     return JsonResponse(context, safe=True)
 
 
+
+
+def guardar_lineas(request):
+
+    return render(request, 'modal.html')
+    
