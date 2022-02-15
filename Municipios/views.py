@@ -4,6 +4,9 @@ from django.shortcuts import render
 from .models import Linea, Municipio
 from Municipios import archivos
 
+def is_ajax(request):
+    return request.META.get('HTTP_X_REQUESTED_WITH') == 'XMLHttpRequest'
+
 def municipio(request):
 
     
@@ -54,4 +57,11 @@ def parseCobol(request):
 def guardar_lineas(request):
 
     return render(request, 'modal.html')
-    
+
+
+def guardar(request):
+    data= {}
+    if is_ajax(request=request):
+        linea = request.POST.get('linea')
+        
+    return JsonResponse(data)

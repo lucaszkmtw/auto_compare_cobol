@@ -10,7 +10,9 @@ $('#parsear').click(function(e) {
         contentType: "application/json; charset=utf-8",
         url: "/parse_cobol/",
         data: {
-            'archivo': archivo
+            'archivo': archivo,
+            'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+
         },
         dataType: "json",
 
@@ -29,19 +31,47 @@ $('#parsear').click(function(e) {
     });
 });
 
-
+var array = []
 
 $('body').on('click', '.editable', function() {
 
-    texto = $(this);
-    console.log(texto['context']['innerHTML']);
 
+
+    texto = $(this);
 
     texto_seleccionado = texto['context']['innerHTML']
+    texto['context']['style']['backgroundColor'] = "lightblue";
+    console.log(texto_seleccionado)
+        // array_de_texto = texto_seleccionado.split(" ")
 
-    array = texto_seleccionado.split(" ");
+    // for (let i = 0; i < array_de_texto.length; i++) {
+    //     array.push(array_de_texto[i]);
+    // }
 
-    console.log(array)
+
+    $("#button_scroll").click(function(e) {
+        e.preventDefault();
+
+
+        $.ajax({
+            url: '/guardar/',
+            type: "POST",
+            data: {
+                'linea': texto_seleccionado,
+                'csrfmiddlewaretoken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+            },
+
+            success: function(response) {
+
+
+            }
+        });
+
+
+    });
+
+
+
 
 
     // var $input = $('<input/>').val($el.text());
