@@ -33,20 +33,24 @@ $('#parsear').click(function(e) {
 
 $('body').on('click', '.editable', function() {
 
+    texto = $(this);
+    console.log(texto['context']['innerHTML']);
 
 
+    texto_seleccionado = texto['context']['innerHTML']
+
+    array = texto_seleccionado.split(" ");
+
+    console.log(array)
 
 
+    // var $input = $('<input/>').val($el.text());
+    // $el.replaceWith($input);
 
-    // // var $el = $(this);
-
-    // // var $input = $('<input/>').val($el.text());
-    // // $el.replaceWith($input);
-
-    // // var save = function() {
-    // //     var $p = $('<p data-editable />').text($input.val());
-    // //     $input.replaceWith($p);
-    // // };
+    // var save = function() {
+    //     var $p = $('<p data-editable />').text($input.val());
+    //     $input.replaceWith($p);
+    // };
 
     /**
       We're defining the callback with `one`, because we know that
