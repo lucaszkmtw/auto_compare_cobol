@@ -4,7 +4,7 @@
     }
     
     p:hover {
-        background-color: lightblue;
+        background-color: rgb(165, 165, 165);
         /* important is not so good */
     }
     

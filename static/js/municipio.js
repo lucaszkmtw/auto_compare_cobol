@@ -32,7 +32,7 @@ $('#parsear').click(function(e) {
 });
 
 var array = []
-
+cargo_array = []
 $('body').on('click', '.editable', function() {
 
 
@@ -41,12 +41,35 @@ $('body').on('click', '.editable', function() {
 
     texto_seleccionado = texto['context']['innerHTML']
     texto['context']['style']['backgroundColor'] = "lightblue";
-    console.log(texto_seleccionado)
-        // array_de_texto = texto_seleccionado.split(" ")
+    array_de_texto = texto_seleccionado.split(" ");
 
-    // for (let i = 0; i < array_de_texto.length; i++) {
-    //     array.push(array_de_texto[i]);
-    // }
+
+
+    for (let i = 0; i < array_de_texto.length; i++) {
+        if (array_de_texto[i].length > 6) {
+
+            parsed = parseInt(array_de_texto[i])
+
+            if (parsed.toString().length <= 6) {
+                console.log('no lo sume')
+            } else {
+                array.push(parsed)
+            }
+        }
+
+        if (array_de_texto[i].length == 5) {
+            cargo_array.push(array_de_texto[i])
+            console.log(array_de_texto[i].substr(0, 1))
+            console.log(array_de_texto[i].substr(1))
+        }
+
+
+    }
+
+    console.log(cargo_array)
+
+
+
 
 
     $("#button_scroll").click(function(e) {
