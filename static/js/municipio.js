@@ -30,9 +30,9 @@ $('#parsear').click(function(e) {
         }
     });
 });
-
+var diccionario = []
 var array = []
-cargo_array = []
+var cargo_array = []
 $('body').on('click', '.editable', function() {
 
 
@@ -60,15 +60,19 @@ $('body').on('click', '.editable', function() {
         if (array_de_texto[i].length == 5 && array_de_texto[i].substr(0, 1) == "'") {
             cargo_array.push(array_de_texto[i].substr(1))
 
+
+
         }
+       
+
+        
 
 
     }
 
-    console.log(cargo_array)
-    console.log(array)
 
-
+    console.log(array, cargo_array)
+    console.log(diccionario)
 
 
 
