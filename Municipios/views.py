@@ -55,8 +55,8 @@ def parseCobol(request):
 
 
 def guardar_lineas(request):
-
-    return render(request, 'modal.html')
+    context = {'asd':'asd'}
+    return render(request, 'modal.html', context)
 
 
 def guardar(request):

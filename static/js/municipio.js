@@ -57,16 +57,16 @@ $('body').on('click', '.editable', function() {
             }
         }
 
-        if (array_de_texto[i].length == 5) {
-            cargo_array.push(array_de_texto[i])
-            console.log(array_de_texto[i].substr(0, 1))
-            console.log(array_de_texto[i].substr(1))
+        if (array_de_texto[i].length == 5 && array_de_texto[i].substr(0, 1) == "'") {
+            cargo_array.push(array_de_texto[i].substr(1))
+
         }
 
 
     }
 
     console.log(cargo_array)
+    console.log(array)
 
 
 
